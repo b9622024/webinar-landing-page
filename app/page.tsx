@@ -1,0 +1,371 @@
+import {
+  ArrowDownRight,
+  Check,
+  CircleX,
+  Clock3,
+  Image as ImageIcon,
+  Quote,
+  Sparkles
+} from "lucide-react";
+import type React from "react";
+import { CTAButton } from "@/components/CTAButton";
+import { siteContent } from "@/data/content";
+
+const webinarUrl = process.env.NEXT_PUBLIC_WEBINAR_URL || "#";
+const lineUrl = process.env.NEXT_PUBLIC_LINE_URL || "#";
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-olive-100 bg-white px-4 py-2 text-sm font-black text-olive-700 shadow-soft">
+      <Sparkles aria-hidden="true" className="h-4 w-4" />
+      {children}
+    </div>
+  );
+}
+
+function PlaceholderCard({
+  title,
+  note,
+  compact = false
+}: {
+  title: string;
+  note: string;
+  compact?: boolean;
+}) {
+  return (
+    <div
+      className={[
+        "relative overflow-hidden rounded-brand border border-olive-100 bg-white shadow-soft",
+        compact ? "min-h-[180px]" : "min-h-[430px]"
+      ].join(" ")}
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(237,244,239,.95),rgba(255,255,255,.9)_45%,rgba(250,248,241,.95))]" />
+      <div className="absolute left-5 top-5 h-24 w-24 rounded-full border border-olive-100 bg-white/70" />
+      <div className="absolute bottom-5 right-5 h-32 w-32 rounded-full border border-wheat/50 bg-white/60" />
+      <div className="relative flex h-full min-h-[inherit] flex-col justify-between p-6">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-olive-600 shadow-soft">
+          <ImageIcon aria-hidden="true" className="h-6 w-6" />
+        </div>
+        <div>
+          <p className="text-lg font-black text-ink">{title}</p>
+          <p className="mt-2 max-w-sm text-sm leading-7 text-muted">{note}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Home() {
+  const content = siteContent;
+
+  return (
+    <main>
+      <header className="sticky top-0 z-40 border-b border-olive-100/90 bg-cream/90 backdrop-blur-xl">
+        <div className="container-page flex items-center justify-between gap-4 py-3">
+          <a className="min-w-0" href="#top" aria-label={content.brand.name}>
+            <p className="truncate text-base font-black leading-tight sm:text-lg">
+              {content.brand.name}
+            </p>
+            <p className="hidden text-xs font-bold text-muted sm:block">{content.brand.kicker}</p>
+          </a>
+          <CTAButton href={webinarUrl} className="hidden px-5 py-3 text-sm sm:inline-flex">
+            {content.cta.primary}
+          </CTAButton>
+        </div>
+      </header>
+
+      <section id="top" className="pb-12 pt-10 sm:pt-14 lg:pb-16">
+        <div className="container-page grid items-center gap-8 lg:grid-cols-[1.03fr_.97fr]">
+          <div>
+            <SectionLabel>{content.hero.eyebrow}</SectionLabel>
+            <h1 className="max-w-3xl text-[2.35rem] font-black leading-[1.16] tracking-normal text-ink sm:text-6xl lg:text-[4.25rem]">
+              {content.hero.title}
+              <span className="mt-3 block text-[1.55rem] leading-[1.32] text-olive-700 sm:text-4xl lg:text-[2.75rem]">
+                {content.hero.secondLine}
+              </span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-9 text-muted sm:text-xl">
+              {content.hero.subtitle}
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <CTAButton href={webinarUrl} className="w-full sm:w-auto">
+                {content.cta.primary}
+              </CTAButton>
+              <p className="text-center text-sm font-bold text-muted sm:text-left">
+                {content.cta.note}
+              </p>
+            </div>
+          </div>
+          <div className="rounded-[28px] border border-olive-100 bg-white p-3 shadow-soft">
+            <PlaceholderCard title={content.hero.visualTitle} note={content.hero.visualNote} />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page rounded-[28px] border border-olive-100 bg-white p-5 shadow-soft sm:p-8">
+          <SectionLabel>一開始不用具備</SectionLabel>
+          <h2 className="text-3xl font-black leading-tight sm:text-5xl">
+            {content.notRequired.title}
+          </h2>
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {content.notRequired.items.map((item) => (
+              <div
+                className="rounded-brand border border-olive-100 bg-cream/70 p-5 text-lg font-black shadow-sm"
+                key={item}
+              >
+                <Check aria-hidden="true" className="mb-4 h-6 w-6 text-olive-600" />
+                {item}
+              </div>
+            ))}
+          </div>
+          <p className="mt-7 rounded-2xl bg-olive-50 px-5 py-4 text-center text-lg font-black text-olive-700">
+            {content.notRequired.note}
+          </p>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page">
+          <SectionLabel>適合的人，比人數更重要</SectionLabel>
+          <h2 className="text-3xl font-black leading-tight sm:text-5xl">
+            {content.audience.title}
+          </h2>
+          <div className="mt-7 grid gap-5 lg:grid-cols-2">
+            <AudienceCard positive title={content.audience.fit.title} items={content.audience.fit.items} />
+            <AudienceCard title={content.audience.notFit.title} items={content.audience.notFit.items} />
+          </div>
+          <p className="mt-7 text-center text-2xl font-black leading-relaxed text-ink">
+            {content.audience.footer}
+          </p>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page">
+          <SectionLabel>Webinar 裡的五個懸念</SectionLabel>
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <h2 className="text-3xl font-black leading-tight sm:text-5xl">
+                {content.webinar.title}
+              </h2>
+              <p className="mt-3 text-lg text-muted">{content.webinar.subtitle}</p>
+            </div>
+            <CTAButton href={webinarUrl} variant="secondary" className="sm:self-center">
+              {content.cta.case}
+            </CTAButton>
+          </div>
+          <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+            {content.webinar.cards.map((card, index) => (
+              <article
+                className="flex min-h-[220px] flex-col justify-between rounded-brand border border-olive-100 bg-white p-5 shadow-soft"
+                key={card}
+              >
+                <span className="text-sm font-black tracking-[0.18em] text-wheat">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-8 text-xl font-black leading-8">{card}</h3>
+                <ArrowDownRight aria-hidden="true" className="mt-6 h-6 w-6 text-olive-600" />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page grid gap-6 lg:grid-cols-[.95fr_1.05fr]">
+          <div>
+            <SectionLabel>真實夥伴案例</SectionLabel>
+            <h2 className="text-3xl font-black leading-tight sm:text-5xl">
+              {content.partnerStory.title}
+            </h2>
+            <p className="mt-4 text-lg leading-9 text-muted">{content.partnerStory.subtitle}</p>
+            <div className="mt-7 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {content.partnerStory.stats.map((stat) => (
+                <div className="rounded-brand border border-olive-100 bg-white p-5 shadow-soft" key={stat.label}>
+                  <p className="text-4xl font-black text-olive-700">{stat.value}</p>
+                  <p className="mt-2 font-bold text-muted">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 rounded-brand border border-olive-100 bg-olive-50 p-5">
+              <p className="text-sm font-black text-olive-700">結果</p>
+              <p className="mt-2 text-xl font-black leading-8">{content.partnerStory.result}</p>
+            </div>
+            <CTAButton href={webinarUrl} className="mt-6 w-full sm:w-auto">
+              {content.cta.story}
+            </CTAButton>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {content.partnerStory.images.map((image) => (
+              <PlaceholderCard
+                compact
+                key={image}
+                title={`/public/images/${image}`}
+                note="真實對話或成果截圖 placeholder"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page grid gap-6 rounded-[28px] border border-olive-100 bg-white p-5 shadow-soft sm:p-8 lg:grid-cols-[.86fr_1.14fr]">
+          <PlaceholderCard
+            title="/public/images/chongming.webp"
+            note="主講人照片 placeholder"
+          />
+          <div>
+            <SectionLabel>主講人</SectionLabel>
+            <h2 className="text-4xl font-black leading-tight sm:text-5xl">
+              {content.speaker.name}
+            </h2>
+            <p className="mt-3 text-lg font-black text-olive-700">
+              {content.speaker.roles.join("｜")}
+            </p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {content.speaker.points.map((point) => (
+                <div className="flex items-start gap-3 rounded-2xl bg-cream/70 p-4" key={point}>
+                  <Check aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-olive-600" />
+                  <span className="font-bold text-muted">{point}</span>
+                </div>
+              ))}
+            </div>
+            <blockquote className="mt-7 rounded-brand bg-olive-50 p-6">
+              <Quote aria-hidden="true" className="mb-3 h-7 w-7 text-olive-600" />
+              <p className="text-2xl font-black leading-10">{content.speaker.quote}</p>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page">
+          <SectionLabel>不用現在決定</SectionLabel>
+          <h2 className="text-3xl font-black leading-tight sm:text-5xl">
+            {content.process.title}
+          </h2>
+          <div className="mt-7 grid gap-4 md:grid-cols-3">
+            {content.process.steps.map((step, index) => (
+              <article className="rounded-brand border border-olive-100 bg-white p-6 shadow-soft" key={step.title}>
+                <p className="text-sm font-black tracking-[0.18em] text-wheat">
+                  STEP {index + 1}
+                </p>
+                <h3 className="mt-5 text-2xl font-black leading-9">{step.title}</h3>
+                <p className="mt-3 text-muted">{step.text}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-5 rounded-2xl bg-white px-5 py-4 text-center text-lg font-black shadow-soft">
+            {content.process.note}
+          </p>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container-page">
+          <SectionLabel>FAQ</SectionLabel>
+          <h2 className="text-3xl font-black leading-tight sm:text-5xl">{content.faq.title}</h2>
+          <div className="mt-7 grid gap-4">
+            {content.faq.items.map((item) => (
+              <article className="rounded-brand border border-olive-100 bg-white p-5 shadow-soft sm:p-6" key={item.question}>
+                <h3 className="text-xl font-black leading-8">{item.question}</h3>
+                <p className="mt-2 text-muted">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-28 pt-10 sm:pb-16">
+        <div className="container-page rounded-[30px] border border-olive-100 bg-white p-6 text-center shadow-soft sm:p-10">
+          <Clock3 aria-hidden="true" className="mx-auto h-10 w-10 text-olive-600" />
+          <h2 className="mt-5 text-3xl font-black leading-tight sm:text-6xl">
+            {content.finalCta.title}
+            <span className="mt-3 block text-olive-700">{content.finalCta.secondLine}</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-9 text-muted">
+            {content.finalCta.text}
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm font-black text-muted">
+            {content.finalCta.details.map((detail) => (
+              <span className="rounded-full border border-olive-100 bg-cream px-4 py-2" key={detail}>
+                {detail}
+              </span>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <CTAButton href={webinarUrl} className="w-full sm:w-auto">
+              {content.cta.primary}
+            </CTAButton>
+            <CTAButton href={lineUrl} kind="line" variant="ghost">
+              LINE 諮詢
+            </CTAButton>
+            <CTAButton href="#assessment" kind="lead" variant="ghost">
+              一對一適性評估
+            </CTAButton>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-olive-100 py-8 text-center text-sm font-bold text-muted">
+        <p>{content.brand.name}｜{content.brand.kicker}</p>
+      </footer>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 bg-gradient-to-t from-cream via-cream/95 to-cream/0 px-4 pb-[calc(12px+env(safe-area-inset-bottom))] pt-7 sm:hidden">
+        <CTAButton href={webinarUrl} className="w-full">
+          {content.cta.mobile}
+        </CTAButton>
+      </div>
+    </main>
+  );
+}
+
+function AudienceCard({
+  title,
+  items,
+  positive = false
+}: {
+  title: string;
+  items: string[];
+  positive?: boolean;
+}) {
+  return (
+    <article className="rounded-[28px] border border-olive-100 bg-white p-5 shadow-soft sm:p-7">
+      <div
+        className={[
+          "mb-5 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-black",
+          positive ? "bg-olive-50 text-olive-700" : "bg-cream text-muted"
+        ].join(" ")}
+      >
+        {positive ? (
+          <Check aria-hidden="true" className="h-4 w-4" />
+        ) : (
+          <CircleX aria-hidden="true" className="h-4 w-4" />
+        )}
+        {title}
+      </div>
+      <ul className="grid gap-3">
+        {items.map((item) => (
+          <li className="flex items-start gap-3 text-base font-bold leading-7 text-muted" key={item}>
+            <span
+              className={[
+                "mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border",
+                positive
+                  ? "border-olive-100 bg-olive-50 text-olive-600"
+                  : "border-olive-100 bg-white text-muted"
+              ].join(" ")}
+            >
+              {positive ? (
+                <Check aria-hidden="true" className="h-4 w-4" />
+              ) : (
+                <CircleX aria-hidden="true" className="h-4 w-4" />
+              )}
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
