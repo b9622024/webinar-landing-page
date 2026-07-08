@@ -3,7 +3,6 @@ import {
   Check,
   CircleX,
   Clock3,
-  Quote,
   Sparkles
 } from "lucide-react";
 import type React from "react";
@@ -187,7 +186,7 @@ export default function Home() {
       </section>
 
       <section className="py-10">
-        <div className="container-page grid gap-6 rounded-[28px] border border-olive-100 bg-white p-5 shadow-soft sm:p-8 lg:grid-cols-[.86fr_1.14fr]">
+        <div className="container-page grid gap-6 rounded-[28px] border border-olive-100 bg-white p-5 shadow-soft sm:p-8 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
           <ImageSlot
             src={content.speaker.image}
             alt={content.speaker.name}
@@ -203,18 +202,47 @@ export default function Home() {
             <p className="mt-3 text-lg font-black text-olive-700">
               {content.speaker.roles.join("｜")}
             </p>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {content.speaker.points.map((point) => (
-                <div className="flex items-start gap-3 rounded-2xl bg-cream/70 p-4" key={point}>
-                  <Check aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-olive-600" />
-                  <span className="font-bold text-muted">{point}</span>
-                </div>
+
+            <div className="mt-7 grid gap-4 sm:grid-cols-2">
+              {content.speaker.credentials.map((item, index) => (
+                <article
+                  className="rounded-brand border border-olive-100 bg-cream/70 p-5"
+                  key={item.title}
+                >
+                  <p className="text-sm font-black tracking-[0.18em] text-wheat">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-xl font-black leading-8 text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm font-bold leading-7 text-muted">{item.text}</p>
+                </article>
               ))}
             </div>
-            <blockquote className="mt-7 rounded-brand bg-olive-50 p-6">
-              <Quote aria-hidden="true" className="mb-3 h-7 w-7 text-olive-600" />
-              <p className="text-2xl font-black leading-10">{content.speaker.quote}</p>
-            </blockquote>
+
+            <div className="mt-7 rounded-brand border border-olive-100 bg-white p-5 shadow-sm sm:p-6">
+              <h3 className="text-2xl font-black leading-9 text-ink">
+                {content.speaker.story.title}
+              </h3>
+              <div className="mt-4 grid gap-4 text-base font-bold leading-8 text-muted">
+                {content.speaker.story.paragraphs.map((paragraph, index) => (
+                  <p
+                    className={index === 3 ? "text-lg font-black text-olive-700" : ""}
+                    key={paragraph}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              <blockquote className="mt-6 border-l-4 border-olive-500 bg-olive-50 px-5 py-5">
+                <p className="text-xl font-black leading-9 text-ink sm:text-2xl sm:leading-10">
+                  {content.speaker.quoteLines.map((line) => (
+                    <span className="block" key={line}>
+                      {line}
+                    </span>
+                  ))}
+                </p>
+              </blockquote>
+            </div>
           </div>
         </div>
       </section>
