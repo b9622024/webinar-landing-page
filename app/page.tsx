@@ -67,10 +67,10 @@ export default function Home() {
           <div className="rounded-[28px] border border-olive-100 bg-white p-3 shadow-soft">
             <ImageSlot
               alt="真實案例截圖"
-              src="/images/partner-story-1.png"
+              src="/images/partner-result-1.png"
+              label="夥伴結果"
               title={content.hero.visualTitle}
               note={content.hero.visualNote}
-              imageClassName="object-contain bg-cream"
             />
           </div>
         </div>
@@ -177,9 +177,9 @@ export default function Home() {
                 key={image}
                 src={`/images/${image}`}
                 alt="真實夥伴案例截圖"
+                label={image.includes("result") ? "夥伴結果" : "夥伴案例"}
                 title={`/public/images/${image}`}
                 note="真實對話或成果截圖 placeholder"
-                imageClassName="object-contain bg-cream"
               />
             ))}
           </div>
