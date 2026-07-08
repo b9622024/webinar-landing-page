@@ -7,7 +7,7 @@ export const siteContent = {
     title: "AI健康副業免費線上說明會｜可樂吉健康研究所",
     description:
       "一場約 50 分鐘的免費線上說明會，帶你了解如何透過數位產品、AI 科學減脂測驗與系統化流程，讓陌生人更自然地開始第一段健康對話。",
-    ogImage: "/images/og-webinar.webp"
+    ogImage: "/images/og-webinar.png"
   },
   cta: {
     primary: "選擇免費觀看時間",
@@ -23,7 +23,7 @@ export const siteContent = {
     subtitle:
       "一場 50 分鐘免費線上說明會，帶你看見我如何從發傳單、網路研討會、自媒體零詢問，一路建立出一套結合數位產品與 AI 測驗的健康副業流程。",
     visualTitle: "真實案例截圖區",
-    visualNote: "之後可放入 partner-story-1.webp、partner-result-1.webp 等對話與結果截圖。"
+    visualNote: "之後可放入 partner-story-1.png、partner-result-1.png 等對話與結果截圖。"
   },
   notRequired: {
     title: "你不需要一開始就很厲害",
@@ -84,10 +84,10 @@ export const siteContent = {
     ],
     result: "陌生人完成測驗與解析後，主動付費開始減脂體驗",
     images: [
-      "partner-story-1.webp",
-      "partner-story-2.webp",
-      "partner-result-1.webp",
-      "partner-result-2.webp"
+      "partner-story-1.png",
+      "partner-story-2.png",
+      "partner-result-1.png",
+      "partner-result-2.png"
     ]
   },
   speaker: {
@@ -104,7 +104,7 @@ export const siteContent = {
     ],
     quote:
       "我花很多年找的，不是更厲害的推銷方法，而是一個讓對的人願意主動開始第一段對話的方法。",
-    image: "/images/chongming.webp"
+    image: "/images/chongming.png"
   },
   process: {
     title: "觀看流程",

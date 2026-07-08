@@ -49,12 +49,12 @@ Pixel ID 由 `NEXT_PUBLIC_META_PIXEL_ID` 讀取。未設定時不會載入 Pixel
 
 正式圖片請放在 `public/images/`：
 
-- `chongming.webp`：主講人照片
-- `og-webinar.webp`：社群分享圖
-- `partner-story-1.webp`
-- `partner-story-2.webp`
-- `partner-result-1.webp`
-- `partner-result-2.webp`
+- `chongming.png`：主講人照片
+- `og-webinar.png`：社群分享圖
+- `partner-story-1.png`
+- `partner-story-2.png`
+- `partner-result-1.png`
+- `partner-result-2.png`
 
 目前頁面已提供漂亮的 CSS placeholder，圖片尚未放入也不會影響 build。
 

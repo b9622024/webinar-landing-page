@@ -3,12 +3,12 @@ import {
   Check,
   CircleX,
   Clock3,
-  Image as ImageIcon,
   Quote,
   Sparkles
 } from "lucide-react";
 import type React from "react";
 import { CTAButton } from "@/components/CTAButton";
+import { ImageSlot } from "@/components/ImageSlot";
 import { siteContent } from "@/data/content";
 
 const webinarUrl = process.env.NEXT_PUBLIC_WEBINAR_URL || "#";
@@ -19,38 +19,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-olive-100 bg-white px-4 py-2 text-sm font-black text-olive-700 shadow-soft">
       <Sparkles aria-hidden="true" className="h-4 w-4" />
       {children}
-    </div>
-  );
-}
-
-function PlaceholderCard({
-  title,
-  note,
-  compact = false
-}: {
-  title: string;
-  note: string;
-  compact?: boolean;
-}) {
-  return (
-    <div
-      className={[
-        "relative overflow-hidden rounded-brand border border-olive-100 bg-white shadow-soft",
-        compact ? "min-h-[180px]" : "min-h-[430px]"
-      ].join(" ")}
-    >
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(237,244,239,.95),rgba(255,255,255,.9)_45%,rgba(250,248,241,.95))]" />
-      <div className="absolute left-5 top-5 h-24 w-24 rounded-full border border-olive-100 bg-white/70" />
-      <div className="absolute bottom-5 right-5 h-32 w-32 rounded-full border border-wheat/50 bg-white/60" />
-      <div className="relative flex h-full min-h-[inherit] flex-col justify-between p-6">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-olive-600 shadow-soft">
-          <ImageIcon aria-hidden="true" className="h-6 w-6" />
-        </div>
-        <div>
-          <p className="text-lg font-black text-ink">{title}</p>
-          <p className="mt-2 max-w-sm text-sm leading-7 text-muted">{note}</p>
-        </div>
-      </div>
     </div>
   );
 }
@@ -97,7 +65,13 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-[28px] border border-olive-100 bg-white p-3 shadow-soft">
-            <PlaceholderCard title={content.hero.visualTitle} note={content.hero.visualNote} />
+            <ImageSlot
+              alt="真實案例截圖"
+              src="/images/partner-story-1.png"
+              title={content.hero.visualTitle}
+              note={content.hero.visualNote}
+              imageClassName="object-contain bg-cream"
+            />
           </div>
         </div>
       </section>
@@ -198,11 +172,14 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {content.partnerStory.images.map((image) => (
-              <PlaceholderCard
+              <ImageSlot
                 compact
                 key={image}
+                src={`/images/${image}`}
+                alt="真實夥伴案例截圖"
                 title={`/public/images/${image}`}
                 note="真實對話或成果截圖 placeholder"
+                imageClassName="object-contain bg-cream"
               />
             ))}
           </div>
@@ -211,9 +188,12 @@ export default function Home() {
 
       <section className="py-10">
         <div className="container-page grid gap-6 rounded-[28px] border border-olive-100 bg-white p-5 shadow-soft sm:p-8 lg:grid-cols-[.86fr_1.14fr]">
-          <PlaceholderCard
-            title="/public/images/chongming.webp"
+          <ImageSlot
+            src={content.speaker.image}
+            alt={content.speaker.name}
+            title="/public/images/chongming.png"
             note="主講人照片 placeholder"
+            imageClassName="object-cover object-top"
           />
           <div>
             <SectionLabel>主講人</SectionLabel>
