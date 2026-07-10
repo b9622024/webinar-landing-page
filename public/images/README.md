@@ -3,7 +3,7 @@
 請將正式圖片放在這個資料夾，建議檔名：
 
 - `chongming.png`
-- `og-webinar.png`
+- `og-online-seminar.png`
 - `partner-story-1.png`
 - `partner-story-2.png`
 - `partner-result-1.png`

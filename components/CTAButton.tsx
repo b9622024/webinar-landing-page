@@ -1,13 +1,13 @@
 "use client";
 
 import type React from "react";
-import { ArrowRight, CalendarDays, MessageCircle, UserCheck } from "lucide-react";
+import { ArrowRight, CalendarDays, MessageCircle } from "lucide-react";
 import { trackMetaEvent } from "@/lib/metaPixel";
 
 type CTAButtonProps = {
   children: React.ReactNode;
   href?: string;
-  kind?: "webinar" | "line" | "lead";
+  kind?: "seminar" | "line";
   variant?: "primary" | "secondary" | "ghost";
   className?: string;
 };
@@ -17,28 +17,25 @@ const fallbackUrl = "#";
 export function CTAButton({
   children,
   href,
-  kind = "webinar",
+  kind = "seminar",
   variant = "primary",
   className = ""
 }: CTAButtonProps) {
   const url = href || fallbackUrl;
 
   function handleClick() {
-    if (kind === "webinar") {
+    if (kind === "seminar") {
       trackMetaEvent("WebinarCTA", { label: String(children) });
-      trackMetaEvent("ViewContent", { content_name: "Webinar schedule" });
+      trackMetaEvent("ViewContent", { content_name: "線上研討會場次" });
     }
 
     if (kind === "line") {
       trackMetaEvent("ClickLine", { label: String(children) });
     }
 
-    if (kind === "lead") {
-      trackMetaEvent("Lead", { content_name: "One-on-one fit assessment" });
-    }
   }
 
-  const Icon = kind === "line" ? MessageCircle : kind === "lead" ? UserCheck : CalendarDays;
+  const Icon = kind === "line" ? MessageCircle : CalendarDays;
 
   return (
     <a

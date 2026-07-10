@@ -12,6 +12,7 @@ import { siteContent } from "@/data/content";
 
 const webinarUrl = process.env.NEXT_PUBLIC_WEBINAR_URL || "#";
 const lineUrl = process.env.NEXT_PUBLIC_LINE_URL || "#";
+const assessmentUrl = process.env.NEXT_PUBLIC_ASSESSMENT_URL;
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -116,20 +117,20 @@ export default function Home() {
 
       <section className="py-10">
         <div className="container-page">
-          <SectionLabel>Webinar 裡的五個懸念</SectionLabel>
+          <SectionLabel>線上研討會裡的五個懸念</SectionLabel>
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <h2 className="text-3xl font-black leading-tight sm:text-5xl">
-                {content.webinar.title}
+                {content.seminar.title}
               </h2>
-              <p className="mt-3 text-lg text-muted">{content.webinar.subtitle}</p>
+              <p className="mt-3 text-lg text-muted">{content.seminar.subtitle}</p>
             </div>
             <CTAButton href={webinarUrl} variant="secondary" className="sm:self-center">
               {content.cta.case}
             </CTAButton>
           </div>
           <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {content.webinar.cards.map((card, index) => (
+            {content.seminar.cards.map((card, index) => (
               <article
                 className="flex min-h-[220px] flex-col justify-between rounded-brand border border-olive-100 bg-white p-5 shadow-soft"
                 key={card}
@@ -306,11 +307,15 @@ export default function Home() {
             <CTAButton href={webinarUrl} className="w-full sm:w-auto">
               {content.cta.primary}
             </CTAButton>
-            <CTAButton href={lineUrl} kind="line" variant="ghost">
-              LINE 諮詢
-            </CTAButton>
-            <CTAButton href="#assessment" kind="lead" variant="ghost">
-              一對一適性評估
+          </div>
+
+          <div className="mx-auto mt-10 max-w-2xl border-t border-olive-100 pt-8">
+            <h3 className="text-xl font-black text-ink">{content.finalCta.lineHelp.title}</h3>
+            <p className="mx-auto mt-2 max-w-xl text-base leading-8 text-muted">
+              {content.finalCta.lineHelp.text}
+            </p>
+            <CTAButton href={lineUrl} kind="line" variant="secondary" className="mt-5 px-5 py-3 text-sm">
+              {content.finalCta.lineHelp.cta}
             </CTAButton>
           </div>
         </div>
@@ -318,6 +323,16 @@ export default function Home() {
 
       <footer className="border-t border-olive-100 py-8 text-center text-sm font-bold text-muted">
         <p>{content.brand.name}｜{content.brand.kicker}</p>
+        {assessmentUrl ? (
+          <a
+            className="mt-3 inline-block font-bold text-muted underline underline-offset-4 hover:text-olive-700"
+            href={assessmentUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {content.finalCta.assessmentLink}
+          </a>
+        ) : null}
       </footer>
 
       <div className="fixed inset-x-0 bottom-0 z-50 bg-gradient-to-t from-cream via-cream/95 to-cream/0 px-4 pb-[calc(12px+env(safe-area-inset-bottom))] pt-7 sm:hidden">

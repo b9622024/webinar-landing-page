@@ -3,7 +3,6 @@
 export type MetaPixelEvent =
   | "PageView"
   | "ViewContent"
-  | "Lead"
   | "WebinarCTA"
   | "ClickLine";
 

@@ -1,6 +1,6 @@
-# AI 健康副業 Webinar Landing Page
+# AI 健康副業線上研討會 Landing Page
 
-這是一個可部署到 Vercel 的 Next.js Landing Page 專案，主轉換目標是讓 Meta 廣告進站的陌生訪客選擇免費 Webinar 觀看時間。
+這是一個可部署到 Vercel 的 Next.js Landing Page 專案，主轉換目標是讓 Meta 廣告進站的陌生訪客選擇免費線上研討會觀看時間。
 
 ## 本地執行
 
@@ -21,9 +21,12 @@ npm run dev
 NEXT_PUBLIC_WEBINAR_URL=
 NEXT_PUBLIC_LINE_URL=
 NEXT_PUBLIC_META_PIXEL_ID=
+NEXT_PUBLIC_ASSESSMENT_URL=
 ```
 
-Vercel 部署時，請在 Project Settings -> Environment Variables 加入同樣三個變數。
+Vercel 部署時，請在 Project Settings -> Environment Variables 加入同樣環境變數。
+
+`NEXT_PUBLIC_ASSESSMENT_URL` 是選填，只有設定時，頁尾才會顯示低調的純文字評估連結。
 
 ## Meta Pixel
 
@@ -32,10 +35,9 @@ Pixel ID 由 `NEXT_PUBLIC_META_PIXEL_ID` 讀取。未設定時不會載入 Pixel
 事件列表：
 
 - 頁面載入：`PageView`
-- 點擊任何主要 Webinar CTA：`WebinarCTA`
+- 點擊任何主要線上研討會 CTA：`WebinarCTA`
 - 點擊選擇觀看時間：`ViewContent`
 - 點擊 LINE：`ClickLine`
-- 點擊一對一適性評估：`Lead`
 
 測試方式：
 
@@ -50,7 +52,7 @@ Pixel ID 由 `NEXT_PUBLIC_META_PIXEL_ID` 讀取。未設定時不會載入 Pixel
 正式圖片請放在 `public/images/`：
 
 - `chongming.png`：主講人照片
-- `og-webinar.png`：社群分享圖
+- `og-online-seminar.png`：社群分享圖
 - `partner-story-1.png`
 - `partner-story-2.png`
 - `partner-result-1.png`
