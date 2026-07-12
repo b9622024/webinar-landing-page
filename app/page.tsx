@@ -9,10 +9,7 @@ import type React from "react";
 import { CTAButton } from "@/components/CTAButton";
 import { ImageSlot } from "@/components/ImageSlot";
 import { siteContent } from "@/data/content";
-
-const webinarUrl = process.env.NEXT_PUBLIC_WEBINAR_URL || "#";
-const lineUrl = process.env.NEXT_PUBLIC_LINE_URL || "#";
-const assessmentUrl = process.env.NEXT_PUBLIC_ASSESSMENT_URL;
+import { LINE_URL, WEBINAR_URL } from "@/data/links";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -36,7 +33,11 @@ export default function Home() {
             </p>
             <p className="hidden text-xs font-bold text-muted sm:block">{content.brand.kicker}</p>
           </a>
-          <CTAButton href={webinarUrl} className="hidden px-5 py-3 text-sm sm:inline-flex">
+          <CTAButton
+            href={WEBINAR_URL}
+            pageSection="header"
+            className="hidden px-5 py-3 text-sm sm:inline-flex"
+          >
             {content.cta.primary}
           </CTAButton>
         </div>
@@ -56,13 +57,16 @@ export default function Home() {
               {content.hero.subtitle}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <CTAButton href={webinarUrl} className="w-full sm:w-auto">
+              <CTAButton href={WEBINAR_URL} pageSection="hero" className="w-full sm:w-auto">
                 {content.cta.primary}
               </CTAButton>
               <p className="text-center text-sm font-bold text-muted sm:text-left">
                 {content.cta.note}
               </p>
             </div>
+            <p className="mt-4 max-w-2xl text-sm font-bold leading-7 text-muted">
+              {content.legalDisclosure}
+            </p>
           </div>
           <div className="rounded-[28px] border border-olive-100 bg-white p-3 shadow-soft">
             <ImageSlot
@@ -125,7 +129,12 @@ export default function Home() {
               </h2>
               <p className="mt-3 text-lg text-muted">{content.seminar.subtitle}</p>
             </div>
-            <CTAButton href={webinarUrl} variant="secondary" className="sm:self-center">
+            <CTAButton
+              href={WEBINAR_URL}
+              pageSection="mid"
+              variant="secondary"
+              className="sm:self-center"
+            >
               {content.cta.case}
             </CTAButton>
           </div>
@@ -166,7 +175,7 @@ export default function Home() {
               <p className="text-sm font-black text-olive-700">結果</p>
               <p className="mt-2 text-xl font-black leading-8">{content.partnerStory.result}</p>
             </div>
-            <CTAButton href={webinarUrl} className="mt-6 w-full sm:w-auto">
+            <CTAButton href={WEBINAR_URL} pageSection="mid" className="mt-6 w-full sm:w-auto">
               {content.cta.story}
             </CTAButton>
           </div>
@@ -304,7 +313,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <CTAButton href={webinarUrl} className="w-full sm:w-auto">
+            <CTAButton href={WEBINAR_URL} pageSection="footer" className="w-full sm:w-auto">
               {content.cta.primary}
             </CTAButton>
           </div>
@@ -314,7 +323,7 @@ export default function Home() {
             <p className="mx-auto mt-2 max-w-xl text-base leading-8 text-muted">
               {content.finalCta.lineHelp.text}
             </p>
-            <CTAButton href={lineUrl} kind="line" variant="secondary" className="mt-5 px-5 py-3 text-sm">
+            <CTAButton href={LINE_URL} kind="line" variant="secondary" className="mt-5 px-5 py-3 text-sm">
               {content.finalCta.lineHelp.cta}
             </CTAButton>
           </div>
@@ -323,20 +332,11 @@ export default function Home() {
 
       <footer className="border-t border-olive-100 py-8 text-center text-sm font-bold text-muted">
         <p>{content.brand.name}｜{content.brand.kicker}</p>
-        {assessmentUrl ? (
-          <a
-            className="mt-3 inline-block font-bold text-muted underline underline-offset-4 hover:text-olive-700"
-            href={assessmentUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {content.finalCta.assessmentLink}
-          </a>
-        ) : null}
+        <p className="mx-auto mt-4 max-w-3xl px-4 leading-7">{content.legalDisclosure}</p>
       </footer>
 
       <div className="fixed inset-x-0 bottom-0 z-50 bg-gradient-to-t from-cream via-cream/95 to-cream/0 px-4 pb-[calc(12px+env(safe-area-inset-bottom))] pt-7 sm:hidden">
-        <CTAButton href={webinarUrl} className="w-full">
+        <CTAButton href={WEBINAR_URL} pageSection="sticky" className="w-full">
           {content.cta.mobile}
         </CTAButton>
       </div>

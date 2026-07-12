@@ -10,10 +10,10 @@ export const siteContent = {
     ogImage: "/images/og-online-seminar.png"
   },
   cta: {
-    primary: "選擇免費觀看時間",
-    mobile: "免費選擇觀看時間",
-    story: "免費看完整故事",
-    case: "免費看完整案例",
+    primary: "免費預約觀看時間",
+    mobile: "免費預約觀看",
+    story: "免費預約觀看時間",
+    case: "免費預約觀看時間",
     note: "免費觀看｜約 35 分鐘｜自行選擇適合場次"
   },
   hero: {
@@ -186,9 +186,10 @@ export const siteContent = {
       title: "還有問題嗎？",
       text: "不確定這場說明會適不適合自己，或觀看方式需要協助？",
       cta: "LINE 詢問崇銘老師"
-    },
-    assessmentLink: "已看完線上研討會？申請一對一事業適性評估"
-  }
+    }
+  },
+  legalDisclosure:
+    "本說明會介紹的是健康事業合作探索，非受僱職缺，也不保證收入。完整合作方式、商業模式與實際工作內容，將於一對一事業適性評估中說明。"
 };
 
 export type SiteContent = typeof siteContent;

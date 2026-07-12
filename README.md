@@ -18,15 +18,14 @@ npm run dev
 請複製 `.env.example` 成 `.env.local`，並填入：
 
 ```bash
-NEXT_PUBLIC_WEBINAR_URL=
+NEXT_PUBLIC_WEBINAR_URL="https://webinarkit.com/webinar/registration/6a53b37a235da80c4dd4bc6d"
 NEXT_PUBLIC_LINE_URL=
 NEXT_PUBLIC_META_PIXEL_ID=
-NEXT_PUBLIC_ASSESSMENT_URL=
 ```
 
 Vercel 部署時，請在 Project Settings -> Environment Variables 加入同樣環境變數。
 
-`NEXT_PUBLIC_ASSESSMENT_URL` 是選填，只有設定時，頁尾才會顯示低調的純文字評估連結。
+一對一事業適性評估申請連結不放在 Landing Page，僅放在 WebinarKit 影片最後的 Offer / CTA。
 
 ## Meta Pixel
 

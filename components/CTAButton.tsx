@@ -8,6 +8,7 @@ type CTAButtonProps = {
   children: React.ReactNode;
   href?: string;
   kind?: "seminar" | "line";
+  pageSection?: "hero" | "header" | "mid" | "footer" | "sticky";
   variant?: "primary" | "secondary" | "ghost";
   className?: string;
 };
@@ -18,6 +19,7 @@ export function CTAButton({
   children,
   href,
   kind = "seminar",
+  pageSection,
   variant = "primary",
   className = ""
 }: CTAButtonProps) {
@@ -25,7 +27,11 @@ export function CTAButton({
 
   function handleClick() {
     if (kind === "seminar") {
-      trackMetaEvent("WebinarCTA", { label: String(children) });
+      trackMetaEvent("WebinarCTA", {
+        destination: "webinarkit",
+        label: String(children),
+        page_section: pageSection
+      });
       trackMetaEvent("ViewContent", { content_name: "線上研討會場次" });
     }
 
