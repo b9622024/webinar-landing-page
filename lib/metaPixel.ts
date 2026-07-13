@@ -4,7 +4,8 @@ export type MetaPixelEvent =
   | "PageView"
   | "ViewContent"
   | "WebinarCTA"
-  | "ClickLine";
+  | "ClickLine"
+  | "ApplicationSubmit";
 
 type Fbq = (
   command: "track" | "trackCustom",
@@ -33,7 +34,11 @@ export function trackMetaEvent(
     return;
   }
 
-  if (eventName === "WebinarCTA" || eventName === "ClickLine") {
+  if (
+    eventName === "WebinarCTA" ||
+    eventName === "ClickLine" ||
+    eventName === "ApplicationSubmit"
+  ) {
     window.fbq("trackCustom", eventName, parameters);
     return;
   }
