@@ -1,5 +1,6 @@
 import {
   ArrowDownRight,
+  CalendarDays,
   Check,
   CircleX,
   Clock3,
@@ -47,14 +48,31 @@ export default function Home() {
         <div className="container-page grid items-center gap-8 lg:grid-cols-[1.03fr_.97fr]">
           <div>
             <SectionLabel>{content.hero.eyebrow}</SectionLabel>
-            <h1 className="max-w-3xl text-[2.35rem] font-black leading-[1.16] tracking-normal text-ink sm:text-6xl lg:text-[4.25rem]">
-              {content.hero.title}
-              <span className="mt-3 block text-[1.55rem] leading-[1.32] text-olive-700 sm:text-4xl lg:text-[2.75rem]">
-                {content.hero.secondLine}
+            <h1 className="max-w-3xl text-[2.18rem] font-black leading-[1.18] tracking-normal text-ink sm:text-6xl lg:text-[4.05rem]">
+              <span className="block">{content.hero.titleLines[0]}</span>
+              <span className="mt-2 block">
+                用
+                <span className="mx-1 rounded-xl bg-olive-50 px-2 text-olive-700">
+                  數位產品
+                </span>
+                與
+                <span className="mx-1 rounded-xl bg-olive-50 px-2 text-olive-700">
+                  AI 測驗
+                </span>
+              </span>
+              <span className="mt-2 block">
+                打造
+                <span className="text-olive-700">陌生人主動詢問</span>
+                的
+                <span className="whitespace-nowrap text-olive-700">AI 健康副業</span>
               </span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-9 text-muted sm:text-xl">
-              {content.hero.subtitle}
+            <p className="mt-6 max-w-2xl text-lg leading-9 text-muted sm:text-xl sm:leading-10">
+              這場
+              <strong className="font-black text-ink">約 35 分鐘</strong>
+              的
+              <strong className="font-black text-ink">免費線上說明會</strong>
+              ，會帶你看懂如何運用數位產品與 AI 減脂測驗，讓陌生人從願意了解、主動對話，到進入健康解析與陪跑服務。
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <CTAButton href={WEBINAR_URL} pageSection="hero" className="w-full sm:w-auto">
@@ -64,8 +82,12 @@ export default function Home() {
                 {content.cta.note}
               </p>
             </div>
-            <p className="mt-4 max-w-2xl text-sm font-bold leading-7 text-muted">
-              {content.legalDisclosure}
+            <div className="mt-4 flex items-start gap-2 text-sm font-black leading-7 text-muted">
+              <CalendarDays aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-olive-600" />
+              <span>{content.hero.scheduleNote}</span>
+            </div>
+            <p className="mt-4 max-w-2xl rounded-2xl border border-olive-100 bg-white/70 px-4 py-3 text-sm font-bold leading-7 text-muted">
+              {content.hero.trustNote}
             </p>
           </div>
           <div className="rounded-[28px] border border-olive-100 bg-white p-3 shadow-soft">
@@ -75,6 +97,8 @@ export default function Home() {
               label="夥伴結果"
               title={content.hero.visualTitle}
               note={content.hero.visualNote}
+              className="max-lg:min-h-[300px]"
+              frameClassName="max-lg:min-h-[260px] max-lg:aspect-[4/3]"
             />
           </div>
         </div>
@@ -100,6 +124,11 @@ export default function Home() {
           <p className="mt-7 rounded-2xl bg-olive-50 px-5 py-4 text-center text-lg font-black text-olive-700">
             {content.notRequired.note}
           </p>
+          <div className="mt-7 text-center">
+            <CTAButton href={WEBINAR_URL} pageSection="mid" className="w-full sm:w-auto">
+              {content.cta.primary}
+            </CTAButton>
+          </div>
         </div>
       </section>
 
@@ -138,7 +167,7 @@ export default function Home() {
               {content.cta.case}
             </CTAButton>
           </div>
-          <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {content.seminar.cards.map((card, index) => (
               <article
                 className="flex min-h-[220px] flex-col justify-between rounded-brand border border-olive-100 bg-white p-5 shadow-soft"
@@ -151,6 +180,11 @@ export default function Home() {
                 <ArrowDownRight aria-hidden="true" className="mt-6 h-6 w-6 text-olive-600" />
               </article>
             ))}
+          </div>
+          <div className="mt-7 text-center">
+            <CTAButton href={WEBINAR_URL} pageSection="mid" className="w-full sm:w-auto">
+              {content.cta.primary}
+            </CTAButton>
           </div>
         </div>
       </section>
@@ -243,7 +277,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <blockquote className="mt-6 border-l-4 border-olive-500 bg-olive-50 px-5 py-5">
+            <blockquote className="mt-6 border-l-4 border-olive-500 bg-olive-50 px-5 py-5">
                 <p className="text-xl font-black leading-9 text-ink sm:text-2xl sm:leading-10">
                   {content.speaker.quoteLines.map((line) => (
                     <span className="block" key={line}>
@@ -251,7 +285,12 @@ export default function Home() {
                     </span>
                   ))}
                 </p>
-              </blockquote>
+            </blockquote>
+              <div className="mt-6">
+                <CTAButton href={WEBINAR_URL} pageSection="mid" className="w-full sm:w-auto">
+                  {content.cta.primary}
+                </CTAButton>
+              </div>
             </div>
           </div>
         </div>
@@ -292,6 +331,11 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <div className="mt-7 text-center">
+            <CTAButton href={WEBINAR_URL} pageSection="footer" className="w-full sm:w-auto">
+              {content.cta.primary}
+            </CTAButton>
+          </div>
         </div>
       </section>
 
@@ -317,6 +361,9 @@ export default function Home() {
               {content.cta.primary}
             </CTAButton>
           </div>
+          <p className="mx-auto mt-4 max-w-3xl text-sm font-bold leading-7 text-muted">
+            {content.legalDisclosure}
+          </p>
 
           <div className="mx-auto mt-10 max-w-2xl border-t border-olive-100 pt-8">
             <h3 className="text-xl font-black text-ink">{content.finalCta.lineHelp.title}</h3>

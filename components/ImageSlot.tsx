@@ -11,6 +11,7 @@ type ImageSlotProps = {
   label?: string;
   compact?: boolean;
   className?: string;
+  frameClassName?: string;
   imageClassName?: string;
 };
 
@@ -22,6 +23,7 @@ export function ImageSlot({
   label,
   compact = false,
   className = "",
+  frameClassName = "",
   imageClassName = ""
 }: ImageSlotProps) {
   const [failed, setFailed] = useState(false);
@@ -40,7 +42,8 @@ export function ImageSlot({
           <div
             className={[
               "flex flex-1 items-center justify-center bg-neutral-950 p-3",
-              compact ? "min-h-[180px] aspect-[4/3]" : "min-h-[430px] aspect-[4/5]"
+              compact ? "min-h-[180px] aspect-[4/3]" : "min-h-[430px] aspect-[4/5]",
+              frameClassName
             ].join(" ")}
           >
             {/* Native img keeps deployment simple and lets the fallback appear when the file is missing. */}
