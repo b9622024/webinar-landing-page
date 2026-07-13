@@ -45,8 +45,8 @@ export default function Home() {
       </header>
 
       <section id="top" className="pb-12 pt-10 sm:pt-14 lg:pb-16">
-        <div className="container-page grid items-center gap-8 lg:grid-cols-[1.03fr_.97fr]">
-          <div>
+        <div className="container-page">
+          <div className="max-w-4xl">
             <SectionLabel>{content.hero.eyebrow}</SectionLabel>
             <h1 className="max-w-3xl text-[2.18rem] font-black leading-[1.18] tracking-normal text-ink sm:text-6xl lg:text-[4.05rem]">
               <span className="block">{content.hero.titleLines[0]}</span>
@@ -89,17 +89,6 @@ export default function Home() {
             <p className="mt-4 max-w-2xl rounded-2xl border border-olive-100 bg-white/70 px-4 py-3 text-sm font-bold leading-7 text-muted">
               {content.hero.trustNote}
             </p>
-          </div>
-          <div className="rounded-[28px] border border-olive-100 bg-white p-3 shadow-soft">
-            <ImageSlot
-              alt="真實案例截圖"
-              src="/images/partner-result-1.png"
-              label="夥伴結果"
-              title={content.hero.visualTitle}
-              note={content.hero.visualNote}
-              className="max-lg:min-h-[300px]"
-              frameClassName="max-lg:min-h-[260px] max-lg:aspect-[4/3]"
-            />
           </div>
         </div>
       </section>
