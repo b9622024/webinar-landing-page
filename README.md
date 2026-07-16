@@ -21,11 +21,42 @@ npm run dev
 NEXT_PUBLIC_WEBINAR_URL="https://webinarkit.com/webinar/registration/6a53b37a235da80c4dd4bc6d"
 NEXT_PUBLIC_LINE_URL=
 NEXT_PUBLIC_META_PIXEL_ID=
+DASHBOARD_PASSWORD=
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
 ```
 
 Vercel 部署時，請在 Project Settings -> Environment Variables 加入同樣環境變數。
 
 一對一事業適性評估申請連結不放在 Landing Page，僅放在 WebinarKit 影片最後的 Offer / CTA。
+
+## LP 數據 Dashboard
+
+後台網址：
+
+```text
+/admin/dashboard
+```
+
+Dashboard 會統計：
+
+- LP 瀏覽：`PageView`
+- 預約按鈕點擊：`WebinarCTA`
+- Meta 潛在顧客事件：`Lead`
+- LINE 點擊：`ClickLine`
+- Tally 問卷送出後回到感謝頁：`ApplicationSubmit`
+
+資料儲存使用 Upstash Redis REST API，不需要額外安裝套件。請在 Vercel 設定：
+
+```bash
+DASHBOARD_PASSWORD=請自行設定一組後台密碼
+UPSTASH_REDIS_REST_URL=Upstash 提供的 REST URL
+UPSTASH_REDIS_REST_TOKEN=Upstash 提供的 REST Token
+```
+
+如果尚未設定 Upstash，網站本身仍會正常運作，但 Dashboard 不會累積數據。
+
+「研討會看完」若要自動統計，需要 WebinarKit 提供完成頁導回、Webhook、Zapier / Make 或匯出資料；目前可先用 `ApplicationSubmit` 作為看完研討會並送出申請問卷的後段指標。
 
 ## Meta Pixel
 
@@ -36,7 +67,9 @@ Pixel ID 由 `NEXT_PUBLIC_META_PIXEL_ID` 讀取。未設定時不會載入 Pixel
 - 頁面載入：`PageView`
 - 點擊任何主要線上研討會 CTA：`WebinarCTA`
 - 點擊選擇觀看時間：`ViewContent`
+- 點擊主要預約 CTA：`Lead`
 - 點擊 LINE：`ClickLine`
+- Tally 問卷送出後進入感謝頁：`ApplicationSubmit`
 
 測試方式：
 

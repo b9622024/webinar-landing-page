@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type React from "react";
+import { Suspense } from "react";
+import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 import { MetaPixel } from "@/components/MetaPixel";
 import { siteContent } from "@/data/content";
 import "./globals.css";
@@ -45,6 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-Hant">
       <body>
         <MetaPixel />
+        <Suspense fallback={null}>
+          <AnalyticsPageView />
+        </Suspense>
         {children}
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { ArrowRight, CalendarDays, MessageCircle } from "lucide-react";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { trackMetaEvent } from "@/lib/metaPixel";
 
 type CTAButtonProps = {
@@ -38,10 +39,33 @@ export function CTAButton({
         destination: "webinarkit",
         page_section: pageSection
       });
+      trackAnalyticsEvent({
+        destination: "webinarkit",
+        eventName: "WebinarCTA",
+        label: String(children),
+        pageSection
+      });
+      trackAnalyticsEvent({
+        destination: "webinarkit",
+        eventName: "ViewContent",
+        label: String(children),
+        pageSection
+      });
+      trackAnalyticsEvent({
+        destination: "webinarkit",
+        eventName: "Lead",
+        label: String(children),
+        pageSection
+      });
     }
 
     if (kind === "line") {
       trackMetaEvent("ClickLine", { label: String(children) });
+      trackAnalyticsEvent({
+        eventName: "ClickLine",
+        label: String(children),
+        pageSection: "line"
+      });
     }
 
   }

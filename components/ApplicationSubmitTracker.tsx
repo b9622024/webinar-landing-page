@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { trackMetaEvent } from "@/lib/metaPixel";
 
 export function ApplicationSubmitTracker() {
@@ -15,6 +16,12 @@ export function ApplicationSubmitTracker() {
     trackMetaEvent("ApplicationSubmit", {
       source: "tally",
       funnel: "ai_health_business"
+    });
+    trackAnalyticsEvent({
+      eventName: "ApplicationSubmit",
+      funnel: "ai_health_business",
+      pageSection: "success",
+      source: "tally"
     });
   }, []);
 
