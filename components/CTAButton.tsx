@@ -33,6 +33,11 @@ export function CTAButton({
         page_section: pageSection
       });
       trackMetaEvent("ViewContent", { content_name: "線上研討會場次" });
+      trackMetaEvent("Lead", {
+        content_name: "免費預約觀看時間",
+        destination: "webinarkit",
+        page_section: pageSection
+      });
     }
 
     if (kind === "line") {
